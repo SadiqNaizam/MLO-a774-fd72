@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
 	darkMode: ["class"],
@@ -52,6 +53,7 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+        accentGreen: 'hsl(var(--accent-green))', // PRD accentGreen
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -64,10 +66,20 @@ export default {
 				}
 			},
 			borderRadius: {
+        // lg, md, sm are mapped to var(--radius) which is now 0.375rem (rounded-md from PRD)
+        // lg: 0.375rem (rounded-md)
+        // md: calc(0.375rem - 2px) which is 0.25rem (rounded, for PRD buttons)
+        // sm: calc(0.375rem - 4px) which is 0.125rem (rounded-sm)
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
+      fontFamily: {
+        sans: ['var(--font-sans)', ...defaultTheme.fontFamily.sans],
+      },
+      boxShadow: {
+        DEFAULT: '0 1px 2px 0 rgb(0 0 0 / 0.05)', // PRD shadows.default: shadow-sm
+      },
 			keyframes: {
 				'accordion-down': {
 					from: {
